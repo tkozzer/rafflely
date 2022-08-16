@@ -1,4 +1,11 @@
-# Raffely
+<style>
+     .heading1 {
+        border-bottem: none;
+    }
+</style>
+
+# Raffely {#identifier .heading1}
+
 
 ## Background
 The Schofield Lions Club (Wisconsin) is a very active club and puts on numerous events
@@ -45,7 +52,16 @@ we will be holding our raffles.
 * As an organizer, I want to be able to display my prizes online, so that I can
 encourage people to come to my raffle.
 * As an organizer, I want to know the frequency of someone's participation, so that I
-can provide enter the in exclusive raffles as a reward.  
+can provide enter the in exclusive raffles as a reward.
+* As an organizer, I want to create a raffle event which will include all relevant information
+(i.e. location, time, prizes, etc) of the raffle, so that I can share this with potential
+participants.
+* As an organizer, I want to be able to see how much money is raised from a given raffle.
+* As an organizer, I want to be able to download a in depth report of how much money was
+raised during a given raffle.
+* As an organizer, I want to allow participants to pre-register for a raffle event, so that
+I can get a good idea of how many people are going to show up.
+*
 
 ### Participant
 
@@ -58,4 +74,5 @@ I can make sure to make the threshold for the exclusive raffles.
 * As a participant, I want to be able to change/update my information, so I can make
 sure it is the most current.  
 * As a participant, I want to be able to delete my information.  
-* As a participant, I want to be able to opt out of text messages.  
+* As a participant, I want to be able to opt out of text messages.
+* As a participant, I want to be able to use a credit/debit card to participate in the raffle.
