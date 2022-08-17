@@ -1,16 +1,9 @@
-<style>
-     .heading1 {
-        border-bottem: none;
-    }
-</style>
-
-# Raffely {#identifier .heading1}
-
+# Raffely
 
 ## Background
 The Schofield Lions Club (Wisconsin) is a very active club and puts on numerous events
 each year. Most events entail some kind of raffle. A raffle can vary depending on what class they are regulated under. In Wisconsin, there are two types of raffles,
-[Class A license](/documents/ClassALicense.pdf) and [Class B license](/documents/ClassBLicense.pdf). Rafflely is interested in providing digital solutions for both
+[Class A license](/documents/assets/ClassALicense.pdf) and [Class B license](/documents/assets/ClassBLicense.pdf). Rafflely is interested in providing digital solutions for both
 types of raffles, but the initial focus will be Class B types of raffles which are
 also knowns as multiple-container raffles or single-container raffles.
 
@@ -43,6 +36,7 @@ required license.
 ## Business Requirements
 
 ### Organizer
+
 * As an organizer, I want to capture participants information, so that I can inform
 them if they won a raffle.
 * As an organizer, I want to have a text message automatically sent to a participant
@@ -61,7 +55,8 @@ participants.
 raised during a given raffle.
 * As an organizer, I want to allow participants to pre-register for a raffle event, so that
 I can get a good idea of how many people are going to show up.
-*
+* As an organizer, I want to have a hard copy of the participants just in case the I can't
+access the data.
 
 ### Participant
 
@@ -75,4 +70,15 @@ I can make sure to make the threshold for the exclusive raffles.
 sure it is the most current.  
 * As a participant, I want to be able to delete my information.  
 * As a participant, I want to be able to opt out of text messages.
-* As a participant, I want to be able to use a credit/debit card to participate in the raffle.
+* As a participant, I want to be able to use a credit/debit card to participate in the raffle.  
+
+## Architecture  
+
+![Image](/documents/assets/rafflely_architecture.png)  
+
+*Figure 1: Diagram showing the architecture of the Rafflely services. A user (organizer or
+participant) connects to the Rafflely Client (website). The Client will make API calls to
+various Lambdas to perform a given task. Tasks could range from creating/updating/deleting events to managing participant sign-ups.  The lambda will do the necessary task along with persisting data to DynamoDB. Once data is persisted and processing is complete, the data will be sent back to the Client.*  
+
+## Rafflely Services Implementation Notes
+

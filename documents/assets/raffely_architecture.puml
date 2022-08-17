@@ -1,0 +1,42 @@
+@startuml Two Modes - Technical View
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v13.1/dist
+!include AWSPuml/AWSCommon.puml
+
+' Uncomment the following line to create simplified view
+!include AWSPuml/AWSSimplified.puml
+
+!include AWSPuml/General/Users.puml
+!include AWSPuml/ApplicationIntegration/APIGateway.puml
+!include AWSPuml/SecurityIdentityCompliance/Cognito.puml
+!include AWSPuml/Compute/Lambda.puml
+!include AWSPuml/Database/DynamoDB.puml
+!include AWSPuml/General/Client.puml
+
+left to right direction
+
+Users(organizers, "Organizers", "charitable organizations")
+Users(participants, "Participants", "raffle participants")
+Client(client, "Rafflely Website", "")
+rectangle RafflelyService {
+    APIGateway(rafflelyAPI, "Rafflely API", "users connect to rafflely services")
+    Lambda(lambda1, "Lambda Task: ..n", "")
+    Lambda(lambda2, "Lambda Task: ...", "")
+    Lambda(lambda, "Lambda Task: 1..", "return success status")
+    DynamoDB(participantdb, "Participant Database", "")
+}
+
+
+
+
+organizers --> client
+participants --> client
+client <--> rafflelyAPI : API calls
+rafflelyAPI <--> lambda : Pass data to lambda
+rafflelyAPI <--> lambda1 : Pass data to lambda
+rafflelyAPI <--> lambda2 : Pass data to lambda
+lambda <--> participantdb : Persist data
+lambda1 <--> participantdb : Persist data
+lambda2 <--> participantdb : Persist data
+
+@enduml
