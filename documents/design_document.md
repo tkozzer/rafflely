@@ -31,7 +31,9 @@ participants and encourage other participants to come back in the future.
 
 **Organizer** - the organization who runs the raffle. They must be able to hold the
 required license.  
-**Participant** - a person who purchases raffle tickets.
+**Participant** - a person who purchases raffle tickets.  
+**Raffle** - is a type of event where participants will purchase a ticket or tickets and
+try to win prizes.
 
 ## Business Requirements
 
@@ -80,5 +82,100 @@ sure it is the most current.
 participant) connects to the Rafflely Client (website). The Client will make API calls to
 various Lambdas to perform a given task. Tasks could range from creating/updating/deleting events to managing participant sign-ups.  The lambda will do the necessary task along with persisting data to DynamoDB. Once data is persisted and processing is complete, the data will be sent back to the Client.*  
 
-## Rafflely Services Implementation Notes
+## Rafflely Services Implementation
 
+## API  
+---
+### Public Models
+
+```
+// Organizer
+String organizationId;
+String adminOrganizerId;
+String nameOfOrg;
+String typeOfOrg;
+String email;
+String phoneNumber;
+String address;
+String classALicenseNumber;
+String classBLicenseNumber;
+String hashedPassword;
+String salt;
+String dateAccountCreated;
+String classADateObtained;
+String classBDateObtained;
+Boolean isEmailVerified;
+Boolean isPhoneVerified;
+Boolean isEmailSubscribed;
+Boolean isPhoneSubscribed;
+List<String> eventIds;
+List<String> organizerIds;
+String organizationPicURL;
+```
+
+```
+// User
+String userId;
+List<String> organizationIds;
+String firstName;
+String lastName;
+String birthDate;
+String email;
+String phoneNumber;
+String dateAccountCreated;
+String isEmailVerified;
+String isPhoneVerified;
+String profilePicURL;
+Boolean isEmailSubscribed;
+Boolean isPhoneSubscribed;
+
+// Organizer extends User
+Boolean isAdmin;
+
+// Participants extends User
+List<RaffleTicket> raffleParticipation; 
+```
+
+```
+// Raffle
+String raffleId;
+String organizerId;
+List<String> raffleItemIds;
+String dateOfRaffle;
+String classOfRaffle;
+String typeOfRaffle;
+String timeOfDrawing;
+String description;
+```
+
+```
+// RaffleTicket
+String raffleTicketNumber;
+String userId;
+String raffleId;
+```
+
+```
+// Event
+String eventId;
+String organizerId;
+List<String> raffleIds;
+String nameOfEvent;
+String eventAddress;
+String description;
+String dateOfEvent;
+String startOfEvent;
+String endOfEvent;
+```
+
+```
+// RaffleItem
+String raffleItemId;
+String raffleId;
+String nameOfItem;
+String description;
+List<String> listOfContents;
+Double estimatedValue;
+String winnerUserId;
+String imageURL;
+```
