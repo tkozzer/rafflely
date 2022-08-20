@@ -89,11 +89,11 @@ various Lambdas to perform a given task. Tasks could range from creating/updatin
 ### Public Models
 
 ```
-// Organizer
+// Organization
 String organizationId;
 String adminOrganizerId;
 String nameOfOrg;
-String typeOfOrg;
+OrganzationType typeOfOrg;
 String email;
 String phoneNumber;
 String address;
@@ -111,6 +111,7 @@ Boolean isPhoneSubscribed;
 List<String> eventIds;
 List<String> organizerIds;
 String organizationPicURL;
+Boolean isActive;
 ```
 
 ```
@@ -122,12 +123,15 @@ String lastName;
 String birthDate;
 String email;
 String phoneNumber;
+String hashedPassword;
+String salt;
 String dateAccountCreated;
-String isEmailVerified;
-String isPhoneVerified;
-String profilePicURL;
+Boolean isEmailVerified;
+Boolean isPhoneVerified;
 Boolean isEmailSubscribed;
 Boolean isPhoneSubscribed;
+String profilePicURL;
+Boolean isActive;
 
 // Organizer extends User
 Boolean isAdmin;
@@ -139,11 +143,11 @@ List<RaffleTicket> raffleParticipation;
 ```
 // Raffle
 String raffleId;
-String organizerId;
+String eventId;
 List<String> raffleItemIds;
 String dateOfRaffle;
-String classOfRaffle;
-String typeOfRaffle;
+RaffleClass raffleClass;
+RaffleType raffleType;
 String timeOfDrawing;
 String description;
 ```
@@ -158,14 +162,23 @@ String raffleId;
 ```
 // Event
 String eventId;
-String organizerId;
+String organizationId;
 List<String> raffleIds;
 String nameOfEvent;
-String eventAddress;
+Address eventAddress;
 String description;
 String dateOfEvent;
 String startOfEvent;
 String endOfEvent;
+```
+```
+// Address
+String line1;
+String line2;
+String aptNumber;
+String city;
+String state;
+String zipcode;
 ```
 
 ```
