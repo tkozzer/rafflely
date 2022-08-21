@@ -19,7 +19,7 @@ public class Organization {
     private OrganizationType typeOfOrg;
     private String email;
     private String phoneNumber;
-    private String address;
+    private Address address;
     private String classALicenseNumber;
     private String classBLicenseNumber;
     private String hashedPassword;
@@ -92,11 +92,11 @@ public class Organization {
     }
 
     @DynamoDBAttribute(attributeName = "address")
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

@@ -20,6 +20,7 @@ public class Raffle {
     private RaffleType raffleType;
     private String timeOfDrawing;
     private String description;
+    private List<RaffleTicket> raffleTickets;
 
     @DynamoDBHashKey(attributeName = "raffle_id")
     public String getRaffleId() {
@@ -95,20 +96,26 @@ public class Raffle {
         this.description = description;
     }
 
+    @DynamoDBAttribute(attributeName = "raffle_tickets")
+    public List<RaffleTicket> getRaffleTickets() {
+        return raffleTickets;
+    }
+
+    public void setRaffleTickets(List<RaffleTicket> raffleTickets) {
+        this.raffleTickets = raffleTickets;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Raffle raffle = (Raffle) o;
-        return raffleId.equals(raffle.raffleId) && Objects.equals(eventId, raffle.eventId) &&
-                Objects.equals(raffleItemIds, raffle.raffleItemIds) && Objects.equals(dateOfRaffle, raffle.dateOfRaffle)
-                && raffleClass.equals(raffle.raffleClass) && Objects.equals(raffleType, raffle.raffleType) &&
-                Objects.equals(timeOfDrawing, raffle.timeOfDrawing) && Objects.equals(description, raffle.description);
+        return raffleId.equals(raffle.raffleId) && Objects.equals(eventId, raffle.eventId) && Objects.equals(raffleItemIds, raffle.raffleItemIds) && dateOfRaffle.equals(raffle.dateOfRaffle) && raffleClass == raffle.raffleClass && raffleType == raffle.raffleType && Objects.equals(timeOfDrawing, raffle.timeOfDrawing) && Objects.equals(description, raffle.description) && Objects.equals(raffleTickets, raffle.raffleTickets);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(raffleId, eventId, raffleItemIds, dateOfRaffle, raffleClass, raffleType, timeOfDrawing, description);
+        return Objects.hash(raffleId, eventId, raffleItemIds, dateOfRaffle, raffleClass, raffleType, timeOfDrawing, description, raffleTickets);
     }
 
     @Override
@@ -122,6 +129,7 @@ public class Raffle {
                 ", raffleType=" + raffleType +
                 ", timeOfDrawing='" + timeOfDrawing + '\'' +
                 ", description='" + description + '\'' +
+                ", raffleTickets=" + raffleTickets +
                 '}';
     }
 }

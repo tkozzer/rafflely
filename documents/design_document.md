@@ -96,7 +96,7 @@ String nameOfOrg;
 OrganzationType typeOfOrg;
 String email;
 String phoneNumber;
-String address;
+Address address;
 String classALicenseNumber;
 String classBLicenseNumber;
 String hashedPassword;
@@ -139,26 +139,15 @@ Boolean isAdmin;
 // Participants extends User
 List<RaffleTicket> raffleParticipation; 
 ```
-
 ```
-// Raffle
-String raffleId;
-String eventId;
-List<String> raffleItemIds;
-String dateOfRaffle;
-RaffleClass raffleClass;
-RaffleType raffleType;
-String timeOfDrawing;
-String description;
+// Address
+String line1;
+String line2;
+String aptNumber;
+String city;
+String state;
+String zipcode;
 ```
-
-```
-// RaffleTicket
-String raffleTicketNumber;
-String userId;
-String raffleId;
-```
-
 ```
 // Event
 String eventId;
@@ -172,15 +161,22 @@ String startOfEvent;
 String endOfEvent;
 ```
 ```
-// Address
-String line1;
-String line2;
-String aptNumber;
-String city;
-String state;
-String zipcode;
+// Raffle
+String raffleId;
+String eventId;
+List<String> raffleItemIds;
+String dateOfRaffle;
+RaffleClass raffleClass;
+RaffleType raffleType;
+String timeOfDrawing;
+String description;
 ```
-
+```
+// RaffleTicket
+String raffleTicketNumber;
+String userId;
+String raffleId;
+```
 ```
 // RaffleItem
 String raffleItemId;
@@ -192,3 +188,39 @@ Double estimatedValue;
 String winnerUserId;
 String imageURL;
 ```
+
+
+### `CreateOrganizerAccountActivity`
+### `GetOrganizerAccountActivity`
+### `UpdateOrganizerAccountActivity`
+### `DeleteOrganizerAccountActivity`
+
+---
+### `CreateOrganizationAccountActivity`
+### `GetOrganizationAccountActivity`
+### `UpdateOrganizationAccountActivity`
+### `DeleteOrganizationAccountActivity`
+
+---
+### `CreateParticipantAccountActivity`
+### `GetParticipantAccountActivity`
+### `UpdateParticipantAccountActivity`
+### `DeleteParticipantAccountActivity`
+
+---
+### `CreateEventActivity`
+### `GetEventActivity`
+### `UpdateEventActivity`
+### `DeleteEventActivity`
+
+----
+### `CreateRaffleActivity`
+### `GetRaffleActivity`
+### `UpdateRaffleActivity`
+### `DeleteRaffleActivity`
+
+---
+### `CreateRaffleItemActivity`
+### `GetRaffleItemActivity`
+### `UpdateRaffleItemActivity`
+### `DeleteRaffleItemActivity`
