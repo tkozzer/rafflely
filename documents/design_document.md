@@ -3,7 +3,7 @@
 ## Background
 The Schofield Lions Club (Wisconsin) is a very active club and puts on numerous events
 each year. Most events entail some kind of raffle. A raffle can vary depending on what class they are regulated under. In Wisconsin, there are two types of raffles,
-[Class A license](/documents/assets/ClassALicense.pdf) and [Class B license](/documents/assets/ClassBLicense.pdf). Rafflely is interested in providing digital solutions for both
+[Class A license](../documents/assets/ClassALicense.pdf) and [Class B license](../documents/assets/ClassBLicense.pdf). Rafflely is interested in providing digital solutions for both
 types of raffles, but the initial focus will be Class B types of raffles which are
 also knowns as multiple-container raffles or single-container raffles.
 
@@ -76,7 +76,7 @@ sure it is the most current.
 
 ## Architecture  
 
-![Image](/documents/assets/rafflely_architecture.png)  
+![Image](../documents/assets/rafflely_architecture.png)  
 
 *Figure 1: Diagram showing the architecture of the Rafflely services. A user (organizer or
 participant) connects to the Rafflely Client (website). The Client will make API calls to
