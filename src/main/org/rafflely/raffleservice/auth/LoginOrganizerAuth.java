@@ -11,14 +11,12 @@ import org.rafflely.raffleservice.models.results.LoginAuthResult;
 
 import javax.inject.Inject;
 
-public class LoginAuth implements RequestHandler<LoginAuthRequest, AbstractResult> {
+public class LoginOrganizerAuth implements RequestHandler<LoginAuthRequest, AbstractResult> {
     private OrganizerDao organizerDao;
-    private ParticipantDao participantDao;
 
     @Inject
-    public LoginAuth(OrganizerDao organizerDao, ParticipantDao participantDao) {
+    public LoginOrganizerAuth(OrganizerDao organizerDao) {
         this.organizerDao = organizerDao;
-        this.participantDao = participantDao;
     }
 
     @Override
@@ -28,7 +26,11 @@ public class LoginAuth implements RequestHandler<LoginAuthRequest, AbstractResul
 
 
 
-        if (0 != 1) {
+        input.getEmail();
+        input.getPassword();
+
+
+        if (false) {
             return ErrorResult.builder().status(null).exception(null).build();
         }
 

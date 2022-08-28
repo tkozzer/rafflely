@@ -2,6 +2,11 @@ package org.rafflely.raffleservice.models.results;
 
 import org.rafflely.raffleservice.models.util.Status;
 
+/**
+ * This an abstract class that every 'Result' class will inherit from. By doing this, we can make sure that a
+ * Status object will be returned to the client calling the API
+ */
+
 public abstract class AbstractResult {
     private Status status;
 
@@ -27,7 +32,6 @@ public abstract class AbstractResult {
         public T build() {
             return actualClass;
         }
-
 
     }
 

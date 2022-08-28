@@ -1,11 +1,11 @@
 package org.rafflely.raffleservice.models.results;
 
-import com.auth0.jwt.JWT;
 
-public class LoginAuthResult  extends AbstractResult {
-    private JWT token;
 
-    private void setToken(JWT token) {
+public class LoginAuthResult extends AbstractResult {
+    private String token;
+
+    private void setToken(String token) {
         this.token = token;
     }
 
@@ -13,7 +13,7 @@ public class LoginAuthResult  extends AbstractResult {
 
     public static class Builder extends AbstractBuilder<LoginAuthResult, Builder> {
 
-        public Builder token(JWT token) {
+        public Builder token(String token) {
             actualClass.setToken(token);
             return this;
         }

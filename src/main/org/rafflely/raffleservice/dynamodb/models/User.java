@@ -28,6 +28,7 @@ public abstract class User {
     private Boolean isPhoneSubscribed;
     private String profilePicURL;
     private Boolean isActive;
+    private String token;
 
     @DynamoDBHashKey(attributeName = "user_id")
     public String getUserId() {

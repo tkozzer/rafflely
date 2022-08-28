@@ -1,7 +1,5 @@
 package org.rafflely.raffleservice.models.results;
 
-import com.auth0.jwt.JWT;
-
 public class ErrorResult extends AbstractResult {
     private Throwable exception;
 

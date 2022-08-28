@@ -22,8 +22,6 @@ public class Organization {
     private Address address;
     private String classALicenseNumber;
     private String classBLicenseNumber;
-    private String hashedPassword;
-    private String salt;
     private String dateAccountCreated;
     private String classADateObtained;
     private String classBDateObtained;
@@ -116,24 +114,6 @@ public class Organization {
 
     public void setClassBLicenseNumber(String classBLicenseNumber) {
         this.classBLicenseNumber = classBLicenseNumber;
-    }
-
-    @DynamoDBAttribute(attributeName = "hashed_password")
-    public String getHashedPassword() {
-        return hashedPassword;
-    }
-
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
-    }
-
-    @DynamoDBAttribute(attributeName = "salt")
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
     }
 
     @DynamoDBAttribute(attributeName = "date_account_created")
@@ -264,8 +244,6 @@ public class Organization {
                 ", address='" + address + '\'' +
                 ", classALicenseNumber='" + classALicenseNumber + '\'' +
                 ", classBLicenseNumber='" + classBLicenseNumber + '\'' +
-                ", hashedPassword='" + hashedPassword + '\'' +
-                ", salt='" + salt + '\'' +
                 ", dateAccountCreated='" + dateAccountCreated + '\'' +
                 ", classADateObtained='" + classADateObtained + '\'' +
                 ", classBDateObtained='" + classBDateObtained + '\'' +
