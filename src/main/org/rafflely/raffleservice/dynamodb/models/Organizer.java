@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @DynamoDBTyped(DynamoDBAttributeType.BOOL)
 
-@DynamoDBTable(tableName = "organizers")
+@DynamoDBTable(tableName = "users")
 public class Organizer extends User {
     private Boolean isAdmin;
 

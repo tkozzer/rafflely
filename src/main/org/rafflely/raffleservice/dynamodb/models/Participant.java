@@ -5,7 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.util.List;
 
-@DynamoDBTable(tableName = "participants")
+@DynamoDBTable(tableName = "users")
 public class Participant extends User {
     private List<RaffleTicket> raffleParticipation;
 

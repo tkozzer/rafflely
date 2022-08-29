@@ -1,5 +1,7 @@
 package org.rafflely.raffleservice.models.util;
 
+import org.rafflely.raffleservice.enums.StatusMessage;
+
 public class Status {
     private StatusMessage statusMessage;
     private String code;
@@ -26,7 +28,4 @@ public class Status {
     }
 }
 
-enum StatusMessage {
-    SUCCESS,
-    ERROR
-}
+

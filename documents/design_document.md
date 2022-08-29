@@ -224,3 +224,14 @@ String imageURL;
 ### `GetRaffleItemActivity`
 ### `UpdateRaffleItemActivity`
 ### `DeleteRaffleItemActivity`
+
+## Authentication
+
+### SRP Protocol (Secure Remote Password Protocol)
+
+Rafflely will be using one of the most secure ways of authenticating a user called SRP protocol or Secure Remote Password protocol. 
+This protocol will allow a user's password to remain private at all times and will never be shared with the authenticating
+server. The protocol is resistant to many types of attacks including man-in-the-middle (mitm) and dictionary attacks. More
+information can be found at the [connect2id](https://connect2id.com/products/nimbus-srp) website. 
+![SRP Sequence Diagram](../documents/assets/srp_sequence_diagram.png)  
+The image above shows the flow of the authentication progress. 

@@ -1,10 +1,7 @@
 package org.rafflely.raffleservice.dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperFieldModel.DynamoDBAttributeType;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTyped;
 
 
 import java.util.List;
@@ -12,6 +9,7 @@ import java.util.Objects;
 
 @DynamoDBDocument
 public abstract class User {
+    public static final String USER_BY_EMAIL_INDEX = "UserByEmailIndex";
     private String userId;
     private List<String> organizationIds;
     private String firstName;
@@ -19,7 +17,7 @@ public abstract class User {
     private String birthDate;
     private String email;
     private String phoneNumber;
-    private String hashedPassword;
+    private String verifier;
     private String salt;
     private String dateAccountCreated;
     private Boolean isEmailVerified;
@@ -28,6 +26,7 @@ public abstract class User {
     private Boolean isPhoneSubscribed;
     private String profilePicURL;
     private Boolean isActive;
+    private String privateKeyB;
     private String token;
 
     @DynamoDBHashKey(attributeName = "user_id")
@@ -75,6 +74,7 @@ public abstract class User {
         this.birthDate = birthDate;
     }
 
+    @DynamoDBIndexHashKey(attributeName = "email", globalSecondaryIndexName = USER_BY_EMAIL_INDEX)
     @DynamoDBAttribute(attributeName = "email")
     public String getEmail() {
         return email;
@@ -93,13 +93,13 @@ public abstract class User {
         this.phoneNumber = phoneNumber;
     }
 
-    @DynamoDBAttribute(attributeName = "hashed_password")
-    public String getHashedPassword() {
-        return hashedPassword;
+    @DynamoDBAttribute(attributeName = "verifier")
+    public String getVerifier() {
+        return verifier;
     }
 
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
+    public void setVerifier(String verifier) {
+        this.verifier = verifier;
     }
 
     @DynamoDBAttribute(attributeName = "salt")
@@ -178,6 +178,15 @@ public abstract class User {
         isActive = active;
     }
 
+    @DynamoDBAttribute(attributeName = "public_key_b")
+    public String getPrivateKeyB() {
+        return privateKeyB;
+    }
+
+    public void setPrivateKeyB(String privateKeyB) {
+        this.privateKeyB = privateKeyB;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -201,7 +210,7 @@ public abstract class User {
                 ", birthDate='" + birthDate + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", hashedPassword='" + hashedPassword + '\'' +
+                ", verifier='" + verifier + '\'' +
                 ", salt='" + salt + '\'' +
                 ", dateAccountCreated='" + dateAccountCreated + '\'' +
                 ", isEmailVerified=" + isEmailVerified +
@@ -210,6 +219,7 @@ public abstract class User {
                 ", isPhoneSubscribed=" + isPhoneSubscribed +
                 ", profilePicURL='" + profilePicURL + '\'' +
                 ", isActive=" + isActive +
+                ", token='" + token + '\'' +
                 '}';
     }
 }
