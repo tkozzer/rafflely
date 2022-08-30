@@ -3,7 +3,7 @@ package org.rafflely.raffleservice.models.requests;
 import org.rafflely.raffleservice.enums.SRPState;
 import org.rafflely.raffleservice.enums.UserType;
 
-public class SRPRequest {
+public class SRPAuthenticateRequest {
     private SRPState state;
     private UserType userType;
     private String email;

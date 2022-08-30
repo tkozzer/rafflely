@@ -2,29 +2,34 @@ package org.rafflely.raffleservice.auth;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.nimbusds.srp6.BigIntegerUtils;
 import com.nimbusds.srp6.SRP6ServerSession;
 import org.rafflely.raffleservice.dao.UserDao;
 import org.rafflely.raffleservice.dynamodb.models.User;
 import org.rafflely.raffleservice.enums.StatusMessage;
 import org.rafflely.raffleservice.exceptions.InvalidRequestException;
 import org.rafflely.raffleservice.exceptions.UserNotFoundException;
-import org.rafflely.raffleservice.models.requests.SRPRequest;
+import org.rafflely.raffleservice.models.requests.SRPAuthenticateRequest;
 import org.rafflely.raffleservice.models.results.AbstractResult;
 import org.rafflely.raffleservice.models.results.ErrorResult;
-import org.rafflely.raffleservice.models.results.SRPResult;
+import org.rafflely.raffleservice.models.results.SRPAuthenticateResult;
 import org.rafflely.raffleservice.models.util.Status;
 
 import javax.inject.Inject;
 
+import java.math.BigInteger;
+
 import static org.rafflely.raffleservice.enums.SRPState.INIT;
 import static org.rafflely.raffleservice.enums.SRPState.STEP_1;
 
-public class SRPAuthenticate implements RequestHandler<SRPRequest, AbstractResult> {
+public class SRPAuthenticate implements RequestHandler<SRPAuthenticateRequest, AbstractResult> {
     private UserDao userDao;
+    private SRP6ServerSession session;
 
     @Inject
-    public SRPAuthenticate(UserDao userDao) {
+    public SRPAuthenticate(UserDao userDao, SRP6ServerSession session) {
         this.userDao = userDao;
+        this.session = session;
     }
 
     /**
@@ -36,7 +41,7 @@ public class SRPAuthenticate implements RequestHandler<SRPRequest, AbstractResul
      * @return returns an {@code <? extends AbstractResult>} back.
      */
     @Override
-    public AbstractResult handleRequest(SRPRequest request, Context context) {
+    public AbstractResult handleRequest(SRPAuthenticateRequest request, Context context) {
         if (request.getState() == null) return error(null, null);
 
         if (request.getState().equals(INIT)) {
@@ -44,36 +49,42 @@ public class SRPAuthenticate implements RequestHandler<SRPRequest, AbstractResul
             try {
                 return stepOne(init(request, context), request, context);
             } catch (UserNotFoundException | InvalidRequestException e) {
-                return error(new Status(StatusMessage.ERROR, "**Replace with Code**"), e);
+                return error(new Status(StatusMessage.ERROR, "**Replace with Code**"), e); //TODO
             }
         } else {
             return stepTwo(request, context);
         }
     }
 
-    private User init(final SRPRequest request, Context context) {
+    private User init(final SRPAuthenticateRequest request, Context context) {
         if(request.getEmail() == null || request.getEmail().length() == 0) throw new InvalidRequestException();
         return userDao.getUserByEmail(request.getEmail(), request.getUserType());
     }
 
-    private AbstractResult stepOne(User user, final SRPRequest request, Context context) {
+    private AbstractResult stepOne(User user, final SRPAuthenticateRequest request, Context context) {
         // create a SRP6 server session
-//        SRP6ServerSession session = new SRP6ServerSession()
+        if (!session.getState().equals(SRP6ServerSession.State.INIT)) {
+            return error(new Status(StatusMessage.ERROR, "**Replace code**"), null); // TODO
+        }
 
+        BigInteger publicKeyB = session.step1(user.getEmail(), new BigInteger(user.getSalt(), 16), new BigInteger(user.getVerifier(), 16));
+        user.setPrivateKeyB(BigIntegerUtils.toHex(session.getPrivateKey()));
+
+        userDao.saveUser(user);
         try {
 
 
-            return SRPResult.builder()
+            return SRPAuthenticateResult.builder()
                     .withState(STEP_1)
                     .withSalt(user.getSalt())
-                    .withPublicKeyB(null)
+                    .withPublicKeyB(publicKeyB)
                     .build();
         } catch (UserNotFoundException e) {
             return error(null, null);
         }
     }
 
-    private AbstractResult stepTwo(SRPRequest request, Context context) {
+    private AbstractResult stepTwo(SRPAuthenticateRequest request, Context context) {
 
         return null;
     }

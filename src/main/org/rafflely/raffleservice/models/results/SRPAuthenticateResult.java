@@ -2,10 +2,12 @@ package org.rafflely.raffleservice.models.results;
 
 import org.rafflely.raffleservice.enums.SRPState;
 
-public class SRPResult extends AbstractResult {
+import java.math.BigInteger;
+
+public class SRPAuthenticateResult extends AbstractResult {
     private SRPState state;
     private String salt;
-    private String publicKeyB;
+    private BigInteger publicKeyB;
 
     private void setState(SRPState state) {
         this.state = state;
@@ -15,13 +17,13 @@ public class SRPResult extends AbstractResult {
         this.salt = salt;
     }
 
-    private void setPublicKeyB(String publicKeyB) {
+    private void setPublicKeyB(BigInteger publicKeyB) {
         this.publicKeyB = publicKeyB;
     }
 
     public static Builder builder() {return new Builder();}
 
-    public static class Builder extends AbstractBuilder<SRPResult, Builder> {
+    public static class Builder extends AbstractBuilder<SRPAuthenticateResult, Builder> {
 
         public Builder withState(SRPState state) {
             actualClass.setState(state);
@@ -33,14 +35,14 @@ public class SRPResult extends AbstractResult {
             return this;
         }
 
-        public Builder withPublicKeyB(String publicKeyB) {
+        public Builder withPublicKeyB(BigInteger publicKeyB) {
             actualClass.setPublicKeyB(publicKeyB);
             return this;
         }
 
         @Override
-        protected SRPResult getActual() {
-            return new SRPResult();
+        protected SRPAuthenticateResult getActual() {
+            return new SRPAuthenticateResult();
         }
 
         @Override

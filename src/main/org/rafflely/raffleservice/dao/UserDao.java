@@ -45,4 +45,8 @@ public class UserDao {
 
         return list.get(0);
     }
+
+    public void saveUser(User user) {
+        mapper.save(user);
+    }
 }

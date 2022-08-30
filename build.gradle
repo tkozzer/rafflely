@@ -76,8 +76,9 @@ dependencies {
     //    implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.70'
 
     // https://mvnrepository.com/artifact/org.bitbucket.simon_massey/thinbus-srp6a-js
-    implementation group: 'org.bitbucket.simon_massey', name: 'thinbus-srp6a-js', version: '1.6.2'
+//    implementation group: 'org.bitbucket.simon_massey', name: 'thinbus-srp6a-js', version: '1.6.2'
 
+    implementation files("/Users/tkozzer/Projects/misc/nimbus-srp/target/srp6a-2.1.1-SNAPSHOT.jar")
 
 }
 
